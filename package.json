@@ -13,7 +13,6 @@
   "scripts": {
     "build": "tsc",
     "prebuild": "rm -rf dist",
-    "prepare": "yarn prebuild && yarn build",
     "dev": "nodemon src/app.ts",
     "lint": "eslint src --ext .ts",
     "test": "jest --coverage",

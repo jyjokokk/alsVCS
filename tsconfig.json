@@ -4,10 +4,11 @@
     "module": "commonjs",
     "outDir": "dist",
     "strict": true,
+    "rootDir": ".",
     "esModuleInterop": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "include": ["src/**/*", "eslint.config.mjs"],
   "exclude": ["node_modules", "dist"]
