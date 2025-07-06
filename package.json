@@ -1,5 +1,6 @@
 {
   "name": "alsvcs",
+  "description": "Express API for Ableton Live Set Version Control System",
   "packageManager": "yarn@4.9.2",
   "scripts": {
     "build": "tsc",
