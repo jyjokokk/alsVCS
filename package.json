@@ -18,7 +18,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:watch:cov": "jest --watch --coverage",
-    "start": "node dist/app.js",
+    "start": "node ./dist/src/app.js",
     "format": "prettier --write src/**/*.{ts,js,json} && eslint src --ext .ts --fix"
   },
   "devDependencies": {

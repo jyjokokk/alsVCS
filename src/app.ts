@@ -2,6 +2,8 @@ import express from 'express'
 import type { Request, Response } from 'express'
 import { applyMainMiddlewares } from './middlewares/app.middleware'
 
+const PORT = 3030
+
 const app = express()
 applyMainMiddlewares(app)
 
@@ -18,6 +20,6 @@ app.get('/rest-test', (_req: Request, res: Response) => {
     .status(200)
 })
 
-app.listen(3001, () => {
-  console.log('Server is running on port 3000')
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
 })
