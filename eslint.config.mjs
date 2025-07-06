@@ -29,12 +29,11 @@ export default tseslint.config(
         ecmaVersion: 'es2023',
         tsconfigRootDir: import.meta.dirname
       }
-    }
-  },
-  {
+    },
     extends: [
+      eslint.configs.recommended,
       tseslint.configs.recommendedTypeChecked,
-      eslint.configs.recommended
+      tseslint.configs.stylisticTypeChecked
     ],
     rules: {
       'no-unused-vars': [
@@ -49,7 +48,8 @@ export default tseslint.config(
           args: 'all',
           argsIgnorePattern: '^_'
         }
-      ]
+      ],
+      '@typescript-eslint/consistent-type-definitions': 'warn'
     }
   },
   {
@@ -66,6 +66,10 @@ export default tseslint.config(
       'jest/no-standalone-expect': 'off',
       'jest/prefer-strict-equal': 'off'
     }
+  },
+  {
+    files: ['**/*.js'],
+    extends: [tseslint.configs.disableTypeChecked]
   },
   {
     extends: [eslintPluginPrettierRecommended],
