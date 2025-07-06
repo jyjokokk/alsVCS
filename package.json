@@ -9,16 +9,17 @@
     "yarn": "1.22.22"
   },
   "license": "MIT",
+  "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
     "prebuild": "rm -rf dist",
     "prepare": "yarn prebuild && yarn build",
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon src/app.ts",
     "lint": "eslint src --ext .ts",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:watch:cov": "jest --watch --coverage",
-    "start": "yarn prepare && node dist/index.js",
+    "start": "yarn prepare && node dist/app.js",
     "format": "prettier --write src/**/*.{ts,js,json} && eslint src --ext .ts --fix"
   },
   "devDependencies": {
