@@ -1,4 +1,3 @@
-// main file for running multiple exercises
 import express from 'express'
 import type { Request, Response } from 'express'
 const app = express()

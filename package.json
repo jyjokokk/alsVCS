@@ -19,7 +19,7 @@
     "test:watch": "jest --watch",
     "test:watch:cov": "jest --watch --coverage",
     "start": "yarn prepare && node dist/index.js",
-    "format": "prettier --write ."
+    "format": "prettier --write src/**/*.{ts,js,json} && eslint src --ext .ts --fix"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
