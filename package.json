@@ -16,6 +16,7 @@
     "dev": "nodemon src/app.ts",
     "lint": "eslint src --ext .ts",
     "test": "jest --coverage",
+    "prepare": "yarn run lint && yarn run format && yarn run test",
     "test:watch": "jest --watch",
     "test:watch:cov": "jest --watch --coverage",
     "start": "node ./dist/src/app.js",

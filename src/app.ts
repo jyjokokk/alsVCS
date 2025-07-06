@@ -2,7 +2,7 @@ import express from 'express'
 import type { Request, Response } from 'express'
 import { applyMainMiddlewares } from './middlewares/app.middleware'
 
-const PORT = 3030
+const PORT = 8080
 
 const app = express()
 applyMainMiddlewares(app)
