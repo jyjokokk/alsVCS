@@ -79,9 +79,9 @@ export function deepClone<T>(value: T): T {
   if (Array.isArray(value)) {
     return deepCloneArray(value) as T
   } else if (value && typeof value === 'object') {
-    const cloned: any = {}
+    const cloned = {} as T
     for (const key in value) {
-      cloned[key] = deepClone((value as any)[key])
+      cloned[key] = deepClone(value[key])
     }
     return cloned
   }
