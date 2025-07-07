@@ -9,6 +9,7 @@ env:
   GCP_PROJECT_ID: alsvcs
   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
   GCP_REGION: europe-west1
+  REGION: europe-west1
   ARTIFACT_REGISTRY_REPO: aslvcsrepo
   IMAGE_NAME: europe-west1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/alsvcs-repo/alsvcs
 
