@@ -1,0 +1,61 @@
+name: Deploy to Google Cloud Run on prod branch push
+
+on:
+  push:
+    branches:
+      - prod
+
+env:
+  GCP_PROJECT_ID: alsvcs
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  GCP_REGION: europe-west1
+  ARTIFACT_REGISTRY_REPO: aslvcsrepo
+  IMAGE_NAME: europe-west1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/alsvcs-repo/alsvcs
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Google Auth
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Authorize Docker to Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+
+      - name: Build and push Docker image to Artifact Registry
+        run: |
+          docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REGISTRY_REPO }}/${{ env.SERVICE_NAME }}:${{ github.sha }} .
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REGISTRY_REPO }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE_NAME }}
+          region: ${{ env.REGION }}
+          # Use the image from Artifact Registry
+          image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REGISTRY_REPO }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+          # Optional: Configure environment variables if needed
+          # env_vars: |
+          #   NODE_ENV=production
+          #   DB_HOST=my-database-instance
+          #   API_KEY=${{ secrets.MY_APP_API_KEY }} # Example from GitHub Secret
+
+      - name: Show Cloud Run URL
+        run: echo "Deployed to Cloud Run at https://${{ steps.deploy.outputs.url }}"
