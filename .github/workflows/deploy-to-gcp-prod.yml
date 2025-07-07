@@ -12,6 +12,7 @@ env:
   REGION: europe-west1
   ARTIFACT_REGISTRY_REPO: aslvcsrepo
   IMAGE_NAME: europe-west1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/alsvcs-repo/alsvcs
+  SERVICE_NAME: alsvcs
 
 jobs:
   deploy:
