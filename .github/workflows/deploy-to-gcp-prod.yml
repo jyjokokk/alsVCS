@@ -3,7 +3,7 @@ name: Deploy to Google Cloud Run on prod branch push
 on:
   push:
     branches:
-      - prod
+      - main
 
 env:
   GCP_PROJECT_ID: alsvcs
@@ -36,7 +36,7 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Authorize Docker to Artifact Registry
-        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+        run: gcloud auth configure-docker west-europe1-docker.pkg.dev
 
       - name: Build and push Docker image to Artifact Registry
         run: |
