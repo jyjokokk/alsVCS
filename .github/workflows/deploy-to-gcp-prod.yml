@@ -18,17 +18,17 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      deployments: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Google Auth
-        id: auth
-        uses: google-github-actions/auth@v2
+        uses: 'google-github-actions/auth@v2'
         with:
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          service_account: '${{ secrets.GCP_SA_EMAIL }}'
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
       - name: Set up gcloud CLI
         uses: google-github-actions/setup-gcloud@v2
@@ -51,11 +51,6 @@ jobs:
           region: ${{ env.REGION }}
           # Use the image from Artifact Registry
           image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REGISTRY_REPO }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
-          # Optional: Configure environment variables if needed
-          # env_vars: |
-          #   NODE_ENV=production
-          #   DB_HOST=my-database-instance
-          #   API_KEY=${{ secrets.MY_APP_API_KEY }} # Example from GitHub Secret
 
       - name: Show Cloud Run URL
         run: echo "Deployed to Cloud Run at https://${{ steps.deploy.outputs.url }}"
