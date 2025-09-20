@@ -45,10 +45,13 @@
     "typescript-eslint": "^8.35.1"
   },
   "dependencies": {
-    "typescript": "^5.8.3",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.27",
+    "typescript": "^5.8.3",
+    "zod": "^4.1.9"
   },
   "version": "0.1.0"
 }
