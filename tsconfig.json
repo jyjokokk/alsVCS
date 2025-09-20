@@ -10,7 +10,8 @@
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
   },
   "include": ["src/**/*", "eslint.config.mjs"],
   "exclude": ["node_modules", "dist"]

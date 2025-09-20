@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm'
-import path from 'path'
 import dotenv from 'dotenv'
 import type { DatabaseConfig } from '../../application/config/config.types'
 import { DatabaseError } from '../../common/errors/errors'
+import { UserEntity } from '../../entities/user.entity'
 
 dotenv.config()
 
@@ -18,15 +18,13 @@ export class DatabaseService {
           'Database configuration must be provided on first initialization'
         )
       }
-      const entitiesPath = path.join(__dirname, '../**/*.entity.{ts,js}')
 
       DatabaseService.instance = new DataSource({
         ...config,
         type: 'postgres',
         synchronize: true,
         logging: false,
-        // TODO: find out if this works
-        entities: [entitiesPath]
+        entities: [UserEntity]
       })
     }
     return DatabaseService.instance

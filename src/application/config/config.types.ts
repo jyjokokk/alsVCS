@@ -1,9 +1,9 @@
 export interface DatabaseConfig {
   host: string
   port: number
-  user?: string
+  username?: string
   password?: string
-  name?: string
+  database?: string
 }
 
 export interface ServerConfig {
