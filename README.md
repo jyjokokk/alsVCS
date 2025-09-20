@@ -9,7 +9,14 @@ A TypeScript/ExpressJS API of cloud hosted Ableton Live Set version control syst
 - RESTful endpoints for integration with your workflow
 - Hosted in the cloud, so your data will be accessible on any machine
 
-## Getting Started
+## API Overview
+
+- `POST /sets` — Add a new Ableton Live Set
+- `GET /sets/:id/versions` — List all versions
+- `POST /sets/:id/commit` — Commit changes
+- `POST /sets/:id/restore` — Restore a previous version
+
+## Development
 
 ```bash
 git clone https://github.com/yourusername/alsVCS.git
@@ -18,12 +25,33 @@ yarn install
 yarn dev
 ```
 
-## API Overview
+### Running local development PostgreSQL database
 
-- `POST /sets` — Add a new Ableton Live Set
-- `GET /sets/:id/versions` — List all versions
-- `POST /sets/:id/commit` — Commit changes
-- `POST /sets/:id/restore` — Restore a previous version
+To start a local PostgreSQL database for development:
+
+```bash
+docker-compose up -d
+```
+
+#### Default connection string
+
+```
+postgresql://postgres:postgres@localhost:5432/alsvcs-db
+```
+
+### Stopping the database
+
+```bash
+docker-compose down
+```
+
+### Data persistence
+
+Data persists in a Docker volume (`postgres_data`). To remove all data, use:
+
+```bash
+docker-compose down -v
+```
 
 ## License
 
