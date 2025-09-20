@@ -59,7 +59,10 @@ export default tseslint.config(
         }
       ],
       '@typescript-eslint/prefer-nullish-coalescing': 'warn',
-      '@typescript-eslint/no-empty-function': 'off'
+      '@typescript-eslint/no-empty-function': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'warn',
+      '@typescript-eslint/no-unsafe-member-access': 'warn',
+      '@typescript-eslint/no-unsafe-call': 'warn'
     }
   },
   {
