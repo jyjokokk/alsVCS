@@ -1,5 +1,9 @@
 import { DataSource } from 'typeorm'
 import path from 'path'
+import dotenv from 'dotenv'
+import { ConfigService } from '../app/services/config/config.service'
+
+dotenv.config()
 
 export class DatabaseService {
   private static instance: DataSource
@@ -10,13 +14,11 @@ export class DatabaseService {
     if (!DatabaseService.instance) {
       const entitiesPath = path.join(__dirname, '../**/*.entity.{ts,js}')
 
+      const config = ConfigService.getInstance().get('database')
+
       DatabaseService.instance = new DataSource({
+        ...config,
         type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: 'user',
-        password: 'password',
-        database: 'database',
         synchronize: true,
         logging: false,
         // TODO: find out if this works
