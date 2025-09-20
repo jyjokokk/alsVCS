@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm'
 import path from 'path'
 import dotenv from 'dotenv'
 import type { DatabaseConfig } from '../app/services/config/config.types'
+import { DatabaseError } from '../common/errors/errors'
 
 dotenv.config()
 
@@ -13,7 +14,7 @@ export class DatabaseService {
   public static getInstance(config?: DatabaseConfig): DataSource {
     if (!DatabaseService.instance) {
       if (!config) {
-        throw new Error(
+        throw new DatabaseError(
           'Database configuration must be provided on first initialization'
         )
       }
