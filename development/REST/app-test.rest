@@ -1,0 +1,18 @@
+### Hello world
+GET http://localhost:3000/
+
+### GET /rest-test
+GET http://localhost:3000/rest-test
+
+### POST /rest-test
+POST http://localhost:3000/rest-test
+Content-Type: application/json
+
+{
+  "num": 4,
+  "text": "jou"
+}
+
+
+### POST /num/:num
+POST http://localhost:3000/num/5
