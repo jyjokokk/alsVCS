@@ -36,10 +36,7 @@ export default tseslint.config(
       tseslint.configs.stylisticTypeChecked
     ],
     rules: {
-      'no-unused-vars': [
-        'warn',
-        { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }
-      ],
+      'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
