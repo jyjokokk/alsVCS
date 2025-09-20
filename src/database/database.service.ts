@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm'
 import path from 'path'
 import dotenv from 'dotenv'
-import { ConfigService } from '../app/services/config/config.service'
+import type { DatabaseConfig } from '../app/services/config/config.types'
 
 dotenv.config()
 
@@ -10,11 +10,14 @@ export class DatabaseService {
 
   private constructor() {}
 
-  public static getInstance(): DataSource {
+  public static getInstance(config?: DatabaseConfig): DataSource {
     if (!DatabaseService.instance) {
+      if (!config) {
+        throw new Error(
+          'Database configuration must be provided on first initialization'
+        )
+      }
       const entitiesPath = path.join(__dirname, '../**/*.entity.{ts,js}')
-
-      const config = ConfigService.getInstance().get('database')
 
       DatabaseService.instance = new DataSource({
         ...config,
@@ -28,8 +31,8 @@ export class DatabaseService {
     return DatabaseService.instance
   }
 
-  public static async initialize(): Promise<void> {
-    const dataSource = this.getInstance()
+  public static async initialize(config?: DatabaseConfig): Promise<void> {
+    const dataSource = this.getInstance(config)
     if (!dataSource.isInitialized) {
       await dataSource.initialize()
       console.log('Database connection established')

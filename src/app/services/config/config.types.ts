@@ -3,6 +3,7 @@ export interface DatabaseConfig {
   port: number
   user?: string
   password?: string
+  name?: string
 }
 
 export interface ServerConfig {

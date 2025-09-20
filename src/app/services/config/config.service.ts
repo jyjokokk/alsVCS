@@ -1,4 +1,4 @@
-import { AppConfig } from './config.types'
+import type { AppConfig } from './config.types'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -13,10 +13,11 @@ export class ConfigService {
         port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000
       },
       database: {
-        host: process.env.DB_HOST || 'localhost',
+        host: process.env.DB_HOST ?? 'localhost',
         port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
-        user: process.env.DB_USER || 'postgres',
-        password: process.env.DB_PASSWORD || 'postgres'
+        user: process.env.DB_USER ?? 'postgres',
+        password: process.env.DB_PASSWORD ?? 'postgres',
+        name: process.env.POSTGRES_DB ?? 'alsvcs-db'
       }
     }
     this.config = envConfig
