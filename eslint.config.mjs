@@ -49,7 +49,17 @@ export default tseslint.config(
           argsIgnorePattern: '^_'
         }
       ],
-      '@typescript-eslint/consistent-type-definitions': 'warn'
+      '@typescript-eslint/consistent-type-definitions': 'warn',
+      '@typescript-eslint/consistent-type-imports': [
+        'warn',
+        {
+          prefer: 'type-imports',
+          disallowTypeAnnotations: false,
+          fixStyle: 'separate-type-imports'
+        }
+      ],
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+      '@typescript-eslint/no-empty-function': 'off'
     }
   },
   {

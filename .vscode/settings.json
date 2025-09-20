@@ -1,4 +1,5 @@
 {
   "prettier.prettierPath": "",
-  "github.copilot.editor.enableCodeActions": true
+  "github.copilot.editor.enableCodeActions": true,
+  "eslint.useFlatConfig": true
 }
