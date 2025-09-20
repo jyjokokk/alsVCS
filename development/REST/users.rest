@@ -1,0 +1,22 @@
+### Users
+
+# Login
+POST localhost:3000/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "password123"
+}
+
+# Get all users
+GET localhost:3000/users
+Content-Type: application/json
+
+# Get a specific user by ID
+GET localhost:3000/users/1
+Content-Type: application/json
+
+# Delete a user by ID
+DELETE localhost:3000/users/1
+Content-Type: application/json
