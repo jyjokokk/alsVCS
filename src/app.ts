@@ -1,6 +1,6 @@
 import express from 'express'
 import type { Request, Response } from 'express'
-import { applyMainMiddlewares } from './middlewares/app.middleware'
+import { applyMainMiddlewares } from './server/middlewares/app.middleware'
 
 const PORT = 8080
 

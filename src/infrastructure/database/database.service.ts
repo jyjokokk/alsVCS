@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm'
 import path from 'path'
 import dotenv from 'dotenv'
-import type { DatabaseConfig } from '../app/services/config/config.types'
-import { DatabaseError } from '../common/errors/errors'
+import type { DatabaseConfig } from '../../application/config/config.types'
+import { DatabaseError } from '../../common/errors/errors'
 
 dotenv.config()
 
