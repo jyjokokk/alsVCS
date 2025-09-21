@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm'
 import dotenv from 'dotenv'
-import type { DatabaseConfig } from '../../application/config/config.types'
-import { DatabaseError } from '../../common/errors/errors'
-import { UserEntity } from '../../entities/user.entity'
+import type { DatabaseConfig } from 'src/application/config/config.types'
+import { DatabaseError } from 'src/common/errors/errors'
+import { UserEntity } from 'src/entities/user/user.entity'
 
 dotenv.config()
 
@@ -22,7 +22,7 @@ export class DatabaseService {
       DatabaseService.instance = new DataSource({
         ...config,
         type: 'postgres',
-        synchronize: true,
+        synchronize: true, // TODO: replace with migrations
         logging: false,
         entities: [UserEntity]
       })
