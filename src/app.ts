@@ -4,6 +4,9 @@ import { applyMainMiddlewares } from './server/middlewares/app.middleware'
 import type { RestTestDTO } from './server/dtos/rest-test.dto'
 import { ConfigService } from './application/config/config.service'
 import { DatabaseService } from './infrastructure/database/database.service'
+import { buildUsersRouter } from './server/routes/users.routes'
+import { UserRepository } from './application/user/user.repository'
+import { UserService } from './application/user/user.service'
 
 void (async () => {
   const config = ConfigService.getInstance().getAll()
@@ -12,6 +15,15 @@ void (async () => {
 
   const app = express()
   applyMainMiddlewares(app)
+
+  // Composition root: construct per-request agnostic services/repositories
+
+  // TODO: Figure out a better way to manage the lifecycle of these
+  const userRepo = new UserRepository(
+    DatabaseService.getInstance(config.database)
+  )
+  const userService = new UserService(userRepo)
+  app.use('/users', buildUsersRouter(userService))
 
   app.get('/', (_req: Request, res: Response) => {
     res.send('Hello, world!')
