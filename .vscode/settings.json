@@ -1,5 +1,8 @@
 {
   "prettier.prettierPath": "",
   "github.copilot.editor.enableCodeActions": true,
-  "eslint.useFlatConfig": true
+  "eslint.useFlatConfig": true,
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.preferTypeOnlyAutoImports": true
 }
